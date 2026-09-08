@@ -1,214 +1,184 @@
-# Gemini CLI: Quotas and pricing
+> 🌐 本文档由 [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) 翻译,英文原版见原项目。
 
-Gemini CLI offers a generous free tier that covers many individual developers'
-use cases. For enterprise or professional usage, or if you need increased quota,
-several options are available depending on your authentication account type.
+# Gemini CLI:配额与定价
 
-For a high-level comparison of available subscriptions and to select the right
-quota for your needs, see the [Plans page](https://geminicli.com/plans/).
+Gemini CLI 提供了覆盖大多数个人开发者使用场景的慷慨免费额度。对于企业或专业用途,
+或者需要更高配额时,可以根据认证账号类型选择多种方案。
 
-## Overview
+各订阅方案的高层次对比与配额选择,请见
+[套餐页面](https://geminicli.com/plans/)。
 
-This article outlines the specific quotas and pricing applicable to Gemini CLI
-when using different authentication methods.
+## 概览
 
-The following table summarizes the available quotas and their respective limits:
+本文介绍使用不同认证方式时,Gemini CLI 适用的具体配额与定价。
 
-| Authentication method | Tier / Subscription             | Maximum requests per user per day |
+下表汇总了各配额及其限制:
+
+| 认证方式              | 层级 / 订阅                     | 每用户每日最大请求数              |
 | :-------------------- | :------------------------------ | :-------------------------------- |
-| **Google account**    | Gemini Code Assist (Individual) | 1,000 requests                    |
-|                       | Google AI Pro                   | 1,500 requests                    |
-|                       | Google AI Ultra                 | 2,000 requests                    |
-| **Gemini API key**    | Free tier (Unpaid)              | 250 requests                      |
-|                       | Pay-as-you-go (Paid)            | Varies                            |
-| **Vertex AI**         | Express mode (Free)             | Varies                            |
-|                       | Pay-as-you-go (Paid)            | Varies                            |
-| **Google Workspace**  | Code Assist Standard            | 1,500 requests                    |
-|                       | Code Assist Enterprise          | 2,000 requests                    |
-|                       | Workspace AI Ultra              | 2,000 requests                    |
+| **Google 账号**       | Gemini Code Assist(个人版)    | 1,000 次请求                      |
+|                       | Google AI Pro                   | 1,500 次请求                      |
+|                       | Google AI Ultra                 | 2,000 次请求                      |
+| **Gemini API key**    | 免费层(未付费)                | 250 次请求                        |
+|                       | 按量付费(付费)                | 不定                              |
+| **Vertex AI**         | Express 模式(免费)            | 不定                              |
+|                       | 按量付费(付费)                | 不定                              |
+| **Google Workspace**  | Code Assist Standard            | 1,500 次请求                      |
+|                       | Code Assist Enterprise          | 2,000 次请求                      |
+|                       | Workspace AI Ultra              | 2,000 次请求                      |
 
-Generally, there are three categories to choose from:
+总体上有三类可选:
 
-- Free Usage: Ideal for experimentation and light use.
-- Paid Tier (fixed price): For individual developers or enterprises who need
-  more generous daily quotas and predictable costs.
-- Pay-As-You-Go: The most flexible option for professional use, long-running
-  tasks, or when you need full control over your usage.
+- 免费使用:适合实验和轻度使用。
+- 付费层(固定价格):适合需要更宽裕的每日配额和可预测成本的个人开发者或企业。
+- 按量付费:最灵活的方案,适合专业用途、长时间运行的任务,或需要完全掌控用量的
+  场景。
 
-Requests are limited per user per minute and are subject to the availability of
-the service in times of high demand.
+请求按每用户每分钟限制,并在高负载时段受服务可用性影响。
 
-## Free usage
+## 免费使用
 
-Access to Gemini CLI begins with a generous free tier, perfect for
-experimentation and light use.
+Gemini CLI 从慷慨的免费层起步,非常适合实验和轻度使用。
 
-Your free usage is governed by the following limits, which depend on your
-authorization type.
+免费使用受以下限制约束,具体取决于你的授权类型。
 
-### Log in with Google (Gemini Code Assist for individuals)
+### 使用 Google 账号登录(Gemini Code Assist for individuals)
 
-For users who authenticate by using their Google account to access Gemini Code
-Assist for individuals. This includes:
+适用于用 Google 账号认证、访问个人版 Gemini Code Assist 的用户,包括:
 
-- 1000 maximum model requests / user / day
-- Model requests will be made across the Gemini model family as determined by
-  Gemini CLI.
+- 每用户每日最多 1000 次模型请求
+- 模型请求由 Gemini CLI 决定,分布在 Gemini 模型家族中
 
-Learn more at
-[Gemini Code Assist for Individuals Limits](https://developers.google.com/gemini-code-assist/resources/quotas#quotas-for-agent-mode-gemini-cli).
+更多信息见
+[Gemini Code Assist for Individuals 限额](https://developers.google.com/gemini-code-assist/resources/quotas#quotas-for-agent-mode-gemini-cli)。
 
-### Log in with Gemini API Key (unpaid)
+### 使用 Gemini API Key 登录(未付费)
 
-If you are using a Gemini API key, you can also benefit from a free tier. This
-includes:
+使用 Gemini API key 同样可以享受免费层,包括:
 
-- 250 maximum model requests / user / day
-- Model requests to Flash model only.
+- 每用户每日最多 250 次模型请求
+- 仅限对 Flash 模型的请求
 
-Learn more at
-[Gemini API Rate Limits](https://ai.google.dev/gemini-api/docs/rate-limits).
+更多信息见
+[Gemini API 速率限制](https://ai.google.dev/gemini-api/docs/rate-limits)。
 
-### Log in with Vertex AI (Express Mode)
+### 使用 Vertex AI 登录(Express 模式)
 
-Vertex AI offers an Express Mode without the need to enable billing. This
-includes:
+Vertex AI 提供无需开通结算的 Express 模式,包括:
 
-- 90 days before you need to enable billing.
-- Quotas and models are specific to your account and their limits vary.
+- 90 天后需开通结算
+- 配额与模型因账号而异,限制各不相同
 
-Learn more at
-[Vertex AI Express Mode Limits](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#quotas).
+更多信息见
+[Vertex AI Express 模式限额](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#quotas)。
 
-## Paid tier: Higher limits for a fixed cost
+## 付费层:固定成本获得更高限额
 
-If you use up your initial number of requests, you can continue to benefit from
-Gemini CLI by upgrading to one of the following subscriptions:
+如果初始请求次数用完,可以升级到以下订阅之一,继续使用 Gemini CLI:
 
-### Individuals
+### 个人
 
-These tiers apply when you sign in with a personal account. To verify whether
-you're on a personal account, visit
-[Google One](https://one.google.com/about/plans?hl=en-US&g1_landing_page=0):
+这些层级适用于个人账号登录。可以访问
+[Google One](https://one.google.com/about/plans?hl=en-US&g1_landing_page=0)
+核实是否为个人账号:
 
-- If you are on a personal account, you will see your personal dashboard.
-- If you are not on a personal account, you will see: "You're currently signed
-  in to your Google Workspace Account."
+- 如果是个人账号,你会看到个人控制面板。
+- 如果不是,你会看到:"You're currently signed in to your Google Workspace Account."
 
-**Supported tiers:** _- Tiers not listed above, including Google AI Plus, are
-not supported._
+**支持的层级:** _- 未列出的层级(包括 Google AI Plus)不受支持。_
 
-- [Google AI Pro and AI Ultra](https://gemini.google/subscriptions/). This is
-  recommended for individual developers. Quotas and pricing are based on a fixed
-  price subscription.
+- [Google AI Pro 与 AI Ultra](https://gemini.google/subscriptions/)。
+  推荐个人开发者使用。配额与定价基于固定价格订阅。
 
-  For predictable costs, you can log in with Google.
+  要获得可预测的成本,可以使用 Google 账号登录。
 
-  Learn more at
-  [Gemini Code Assist Quotas and Limits](https://developers.google.com/gemini-code-assist/resources/quotas)
+  更多信息见
+  [Gemini Code Assist 配额与限制](https://developers.google.com/gemini-code-assist/resources/quotas)
 
-### Through your organization
+### 通过组织
 
-These tiers are applicable when you are signing in with a Google Workspace
-account.
+这些层级适用于使用 Google Workspace 账号登录的场景。
 
-- To verify your account type, visit
-  [the Google One page](https://one.google.com/about/plans?hl=en-US&g1_landing_page=0).
-- You are on a workspace account if you see the message "You're currently signed
-  in to your Google Workspace Account".
+- 核实账号类型:访问
+  [Google One 页面](https://one.google.com/about/plans?hl=en-US&g1_landing_page=0)。
+- 如果看到 "You're currently signed in to your Google Workspace Account",
+  说明你使用的是 workspace 账号。
 
-**Supported tiers:** _- Tiers not listed above, including Workspace AI
-Standard/Plus and AI Expanded, are not supported._
+**支持的层级:** _- 未列出的层级(包括 Workspace AI Standard/Plus 与
+AI Expanded)不受支持。_
 
-- [Workspace AI Ultra Access](https://workspace.google.com/products/ai-ultra/).
-- [Purchase a Gemini Code Assist Subscription through Google Cloud](https://cloud.google.com/gemini/docs/codeassist/overview).
+- [Workspace AI Ultra 访问权限](https://workspace.google.com/products/ai-ultra/)。
+- [通过 Google Cloud 购买 Gemini Code Assist 订阅](https://cloud.google.com/gemini/docs/codeassist/overview)。
 
-  Quotas and pricing are based on a fixed price subscription with assigned
-  license seats. For predictable costs, you can sign in with Google.
+  配额与定价基于固定价格订阅并分配许可席位。要获得可预测的成本,
+  可以使用 Google 账号登录。
 
-  This includes the following request limits:
+  请求限额如下:
 
-  - Gemini Code Assist Standard edition:
-    - 1500 maximum model requests / user / day
-  - Gemini Code Assist Enterprise edition:
-    - 2000 maximum model requests / user / day
-  - Model requests will be made across the Gemini model family as determined by
-    Gemini CLI.
+  - Gemini Code Assist Standard 版:
+    - 每用户每日最多 1500 次模型请求
+  - Gemini Code Assist Enterprise 版:
+    - 每用户每日最多 2000 次模型请求
+  - 模型请求由 Gemini CLI 决定,分布在 Gemini 模型家族中
 
-  [Learn more about Gemini Code Assist license limits](https://developers.google.com/gemini-code-assist/resources/quotas#quotas-for-agent-mode-gemini-cli).
+  [了解更多 Gemini Code Assist 许可限额](https://developers.google.com/gemini-code-assist/resources/quotas#quotas-for-agent-mode-gemini-cli)。
 
-## Pay as you go
+## 按量付费
 
-If you hit your daily request limits or exhaust your Gemini Pro quota even after
-upgrading, the most flexible solution is to switch to a pay-as-you-go model,
-where you pay for the specific amount of processing you use. This is the
-recommended path for uninterrupted access.
+如果达到每日请求上限,或在升级后仍耗尽了 Gemini Pro 配额,最灵活的方案是切换到
+按量付费模式——为实际使用的处理量付费。这是保证服务不中断的推荐路径。
 
-To do this, log in using a Gemini API key or Vertex AI.
+为此,请使用 Gemini API key 或 Vertex AI 登录。
 
-### Vertex AI (regular mode)
+### Vertex AI(常规模式)
 
-An enterprise-grade platform for building, deploying, and managing AI models,
-including Gemini. It offers enhanced security, data governance, and integration
-with other Google Cloud services.
+面向构建、部署和管理 AI 模型(包括 Gemini)的企业级平台,提供增强的安全性、
+数据治理以及与其他 Google Cloud 服务的集成。
 
-- Quota: Governed by a dynamic shared quota system or pre-purchased provisioned
-  throughput.
-- Cost: Based on model and token usage.
+- 配额:由动态共享配额系统或预先购买的预配吞吐量决定。
+- 成本:按模型与 token 用量计费。
 
-Learn more at
-[Vertex AI Dynamic Shared Quota](https://cloud.google.com/vertex-ai/generative-ai/docs/resources/dynamic-shared-quota)
-and [Vertex AI Pricing](https://cloud.google.com/vertex-ai/pricing).
+更多信息见
+[Vertex AI 动态共享配额](https://cloud.google.com/vertex-ai/generative-ai/docs/resources/dynamic-shared-quota)
+和 [Vertex AI 定价](https://cloud.google.com/vertex-ai/pricing)。
 
 ### Gemini API key
 
-Ideal for developers who want to quickly build applications with the Gemini
-models. This is the most direct way to use the models.
+适合想用 Gemini 模型快速构建应用的开发者,是使用模型最直接的方式。
 
-- Quota: Varies by pricing tier.
-- Cost: Varies by pricing tier and model/token usage.
+- 配额:因定价层级而异。
+- 成本:因定价层级及模型/token 用量而异。
 
-Learn more at
-[Gemini API Rate Limits](https://ai.google.dev/gemini-api/docs/rate-limits),
-[Gemini API Pricing](https://ai.google.dev/gemini-api/docs/pricing)
+更多信息见
+[Gemini API 速率限制](https://ai.google.dev/gemini-api/docs/rate-limits)、
+[Gemini API 定价](https://ai.google.dev/gemini-api/docs/pricing)
 
-It’s important to highlight that when using an API key, you pay per token/call.
-This can be more expensive for many small calls with few tokens, but it's the
-only way to ensure your workflow isn't interrupted by reaching a limit on your
-quota.
+需要强调:使用 API key 时按 token/调用付费。对于大量小调用的场景可能更贵,
+但它是确保工作流不因配额上限而中断的唯一方式。
 
-## Gemini for workspace plans
+## Gemini for Workspace 套餐
 
-These plans currently apply only to the use of Gemini web-based products
-provided by Google-based experiences (for example, the Gemini web app or the
-Flow video editor). These plans do not apply to the API usage which powers the
-Gemini CLI. Supporting these plans is under active consideration for future
-support.
+这些套餐目前仅适用于 Google 体验提供的 Gemini 网页产品
+(例如 Gemini 网页应用或 Flow 视频编辑器),不适用于驱动 Gemini CLI 的 API
+使用。未来是否会支持这些套餐仍在积极评估中。
 
-## Check usage and limits
+## 查看用量与限额
 
-You can check your current token usage and applicable limits using the
-`/stats model` command. This command provides a snapshot of your current
-session's token usage, as well as information about the limits associated with
-your current quota.
+可以使用 `/stats model` 命令查看当前 token 用量与适用限额。该命令给出当前会话
+token 用量的快照,以及当前配额对应的限额信息。
 
-For more information on the `/stats` command and its subcommands, see the
-[Command Reference](../reference/commands.md#stats).
+关于 `/stats` 命令及其子命令的更多信息,见
+[命令参考](../reference/commands.md#stats)。
 
-A summary of model usage is also presented on exit at the end of a session.
+会话结束时也会展示一份模型用量摘要。
 
-## Tips to avoid high costs
+## 避免高额成本的技巧
 
-When using a pay-as-you-go plan, be mindful of your usage to avoid unexpected
-costs.
+使用按量付费方案时,留意用量以避免意外开销。
 
-- **Be selective with suggestions**: Before accepting a suggestion, especially
-  for a computationally intensive task like refactoring a large codebase,
-  consider if it's the most cost-effective approach.
-- **Use precise prompts**: You are paying per call, so think about the most
-  efficient way to get your desired result. A well-crafted prompt can often get
-  you the answer you need in a single call, rather than multiple back-and-forth
-  interactions.
-- **Monitor your usage**: Use the `/stats model` command to track your token
-  usage during a session. This can help you stay aware of your spending in real
-  time.
+- **谨慎采纳建议**:在采纳建议之前(尤其是重构大型代码库这类计算密集型任务),
+  先想想这是否是性价比最高的做法。
+- **使用精确的提示词**:按调用付费,所以要思考获得目标结果的最有效方式。
+  一条打磨好的提示词往往能一次调用拿到答案,省去多轮来回交互。
+- **监控用量**:会话中使用 `/stats model` 命令跟踪 token 用量,
+  实时掌握支出情况。
