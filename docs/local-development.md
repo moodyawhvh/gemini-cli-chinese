@@ -1,92 +1,88 @@
-# Local development guide
+> 🌐 本文档由 [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) 翻译,英文原版见原项目。
 
-This guide provides instructions for setting up and using local development
-features for Gemini CLI.
+# 本地开发指南
 
-## Tracing
+本指南介绍如何搭建和使用 Gemini CLI 的本地开发功能。
 
-Gemini CLI uses OpenTelemetry (OTel) to record traces that help you debug agent
-behavior. Traces instrument key events like model calls, tool scheduler
-operations, and tool calls.
+## 追踪(Tracing)
 
-Traces provide deep visibility into agent behavior and help you debug complex
-issues. They are captured automatically when you enable telemetry.
+Gemini CLI 使用 OpenTelemetry(OTel)记录追踪信息,帮助你调试智能体行为。
+追踪覆盖了模型调用、工具调度器操作、工具调用等关键事件。
 
-### View traces
+追踪让你深入洞察智能体行为,便于排查复杂问题。启用遥测后会自动采集。
 
-You can view traces using Genkit Developer UI, Jaeger, or Google Cloud.
+### 查看追踪
 
-#### Use Genkit
+你可以通过 Genkit Developer UI、Jaeger 或 Google Cloud 查看追踪。
 
-Genkit provides a web-based UI for viewing traces and other telemetry data.
+#### 使用 Genkit
 
-1.  **Start the Genkit telemetry server:**
+Genkit 提供基于网页的 UI,可查看追踪及其他遥测数据。
 
-    Run the following command to start the Genkit server:
+1.  **启动 Genkit 遥测服务器:**
+
+    运行以下命令启动 Genkit 服务器:
 
     ```bash
     npm run telemetry -- --target=genkit
     ```
 
-    The script will output the URL for the Genkit Developer UI. For example:
+    脚本会输出 Genkit Developer UI 的地址。例如:
     `Genkit Developer UI: http://localhost:4000`
 
-2.  **Run Gemini CLI:**
+2.  **运行 Gemini CLI:**
 
-    In a separate terminal, run your Gemini CLI command:
+    在另一个终端运行你的 Gemini CLI 命令:
 
     ```bash
     gemini
     ```
 
-3.  **View the traces:**
+3.  **查看追踪:**
 
-    Open the Genkit Developer UI URL in your browser and navigate to the
-    **Traces** tab to view the traces.
+    在浏览器中打开 Genkit Developer UI 地址,进入 **Traces** 标签页查看追踪。
 
-#### Use Jaeger
+#### 使用 Jaeger
 
-You can view traces in the Jaeger UI for local development.
+本地开发时可以在 Jaeger UI 中查看追踪。
 
-1.  **Start the telemetry collector:**
+1.  **启动遥测收集器:**
 
-    Run the following command in your terminal to download and start Jaeger and
-    an OTel collector:
+    在终端运行以下命令,下载并启动 Jaeger 与 OTel 收集器:
 
     ```bash
     npm run telemetry -- --target=local
     ```
 
-    This command configures your workspace for local telemetry and provides a
-    link to the Jaeger UI (usually `http://localhost:16686`).
+    该命令会为本地遥测配置工作区,并给出 Jaeger UI 链接
+    (通常是 `http://localhost:16686`)。
 
-    - **Collector logs:** `~/.gemini/tmp/<projectHash>/otel/collector.log`
+    - **收集器日志:** `~/.gemini/tmp/<projectHash>/otel/collector.log`
 
-2.  **Run Gemini CLI:**
+2.  **运行 Gemini CLI:**
 
-    In a separate terminal, run your Gemini CLI command:
+    在另一个终端运行你的 Gemini CLI 命令:
 
     ```bash
     gemini
     ```
 
-3.  **View the traces:**
+3.  **查看追踪:**
 
-    After running your command, open the Jaeger UI link in your browser to view
-    the traces.
+    运行命令后,在浏览器中打开 Jaeger UI 链接查看追踪。
 
-#### Use Google Cloud
+#### 使用 Google Cloud
 
-You can use an OpenTelemetry collector to forward telemetry data to Google Cloud
-Trace for custom processing or routing.
+你可以用 OpenTelemetry 收集器把遥测数据转发到 Google Cloud Trace,
+进行自定义处理或路由。
 
 <!-- prettier-ignore -->
 > [!WARNING]
-> Ensure you complete the
-> [Google Cloud telemetry prerequisites](./cli/telemetry.md#prerequisites)
-> (Project ID, authentication, IAM roles, and APIs) before using this method.
+> 使用此方式前,请先完成
+> [Google Cloud 遥测前置条件](./cli/telemetry.md#prerequisites)
+>(项目 ID、认证、IAM 角色与 API)。
 
-1.  **Configure `.gemini/settings.json`:**
+1.  **配置 `.gemini/settings.json`:**
 
     ```json
     {
@@ -98,45 +94,42 @@ Trace for custom processing or routing.
     }
     ```
 
-2.  **Start the telemetry collector:**
+2.  **启动遥测收集器:**
 
-    Run the following command to start a local OTel collector that forwards to
-    Google Cloud:
+    运行以下命令启动转发到 Google Cloud 的本地 OTel 收集器:
 
     ```bash
     npm run telemetry -- --target=gcp
     ```
 
-    The script outputs links to view traces, metrics, and logs in the Google
-    Cloud Console.
+    脚本会输出在 Google Cloud Console 中查看追踪、指标和日志的链接。
 
-    - **Collector logs:** `~/.gemini/tmp/<projectHash>/otel/collector-gcp.log`
+    - **收集器日志:** `~/.gemini/tmp/<projectHash>/otel/collector-gcp.log`
 
-3.  **Run Gemini CLI:**
+3.  **运行 Gemini CLI:**
 
-    In a separate terminal, run your Gemini CLI command:
+    在另一个终端运行你的 Gemini CLI 命令:
 
     ```bash
     gemini
     ```
 
-4.  **View logs, metrics, and traces:**
+4.  **查看日志、指标与追踪:**
 
-    After sending prompts, view your data in the Google Cloud Console. See the
-    [telemetry documentation](./cli/telemetry.md#view-google-cloud-telemetry)
-    for links to Logs, Metrics, and Trace explorers.
+    发送提示词后,在 Google Cloud Console 中查看数据。Logs、Metrics 与
+    Trace 浏览器的入口链接见
+    [遥测文档](./cli/telemetry.md#view-google-cloud-telemetry)。
 
-For more detailed information on telemetry, see the
-[telemetry documentation](./cli/telemetry.md).
+遥测的更多细节见[遥测文档](./cli/telemetry.md)。
 
-### Instrument code with traces
+### 在代码中添加追踪
 
-You can add traces to your own code for more detailed instrumentation.
+你可以给自己的代码添加追踪,获得更细粒度的埋点。
 
-Adding traces helps you debug and understand the flow of execution. Use the
-`runInDevTraceSpan` function to wrap any section of code in a trace span.
+添加追踪有助于调试和理解执行流程。使用 `runInDevTraceSpan` 函数可以把任意代码段
+包进一个追踪 span。
 
-Here is a basic example:
+一个基本示例:
 
 ```typescript
 import { runInDevTraceSpan } from '@google/gemini-cli-core';
@@ -169,14 +162,10 @@ await runInDevTraceSpan(
 );
 ```
 
-In this example:
+示例说明:
 
-- `operation`: The operation type of the span, represented by the
-  `GeminiCliOperation` enum.
-- `metadata.input`: (Optional) An object containing the input data for the
-  traced operation.
-- `metadata.output`: (Optional) An object containing the output data from the
-  traced operation.
-- `metadata.attributes`: (Optional) A record of custom attributes to add to the
-  span.
-- `metadata.error`: (Optional) An error object to record if the operation fails.
+- `operation`:span 的操作类型,由 `GeminiCliOperation` 枚举表示。
+- `metadata.input`:(可选)被追踪操作的输入数据对象。
+- `metadata.output`:(可选)被追踪操作的输出数据对象。
+- `metadata.attributes`:(可选)要附加到 span 的自定义属性记录。
+- `metadata.error`:(可选)操作失败时记录的错误对象。
