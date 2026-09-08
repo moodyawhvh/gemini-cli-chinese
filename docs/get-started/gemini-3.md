@@ -1,125 +1,112 @@
-# Gemini 3 Pro and Gemini 3 Flash on Gemini CLI
+> 🌐 本文档由 [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) 翻译,英文原版见原项目。
 
-Learn about how you can use Gemini 3 Pro and Gemini 3 Flash on Gemini CLI.
+# 在 Gemini CLI 上使用 Gemini 3 Pro 与 Gemini 3 Flash
+
+了解如何在 Gemini CLI 上使用 Gemini 3 Pro 和 Gemini 3 Flash。
 
 <!-- prettier-ignore -->
 > [!NOTE]
-> Gemini 3.1 Pro Preview is rolling out. To determine whether you have
-> access to Gemini 3.1, use the `/model` command and select **Manual**. If you
-> have access, you will see `gemini-3.1-pro-preview`.
+> Gemini 3.1 Pro Preview 正在逐步推出。要判断你是否拥有 Gemini 3.1 的访问权限,
+> 请使用 `/model` 命令并选择 **Manual**。如果有权限,你会看到
+> `gemini-3.1-pro-preview`。
 >
-> If you have access to Gemini 3.1, it will be included in model routing when
-> you select **Auto (Gemini 3)**. You can also launch the Gemini 3.1 model
-> directly using the `-m` flag:
+> 如果你拥有 Gemini 3.1 的访问权限,在选择 **Auto (Gemini 3)** 时它会被纳入模型
+> 路由。你也可以用 `-m` 标志直接启动 Gemini 3.1 模型:
 >
 > ```
 > gemini -m gemini-3.1-pro-preview
 > ```
 >
-> Learn more about [models](../cli/model.md) and
-> [model routing](../cli/model-routing.md).
+> 更多信息请参考[模型](../cli/model.md)与[模型路由](../cli/model-routing.md)。
 
-## How to get started with Gemini 3 on Gemini CLI
+## 如何在 Gemini CLI 上开始使用 Gemini 3
 
-Get started by upgrading Gemini CLI to the latest version:
+先把 Gemini CLI 升级到最新版本:
 
 ```bash
 npm install -g @google/gemini-cli@latest
 ```
 
-If your version is 0.21.1 or later:
+如果你的版本是 0.21.1 或更高:
 
-1. Run `/model`.
-2. Select **Auto (Gemini 3)**.
+1. 运行 `/model`。
+2. 选择 **Auto (Gemini 3)**。
 
-For more information, see [Gemini CLI model selection](../cli/model.md).
+更多信息请参考 [Gemini CLI 模型选择](../cli/model.md)。
 
-### Usage limits and fallback
+### 用量限制与回退
 
-Gemini CLI will tell you when you reach your Gemini 3 Pro daily usage limit.
-When you encounter that limit, you’ll be given the option to switch to Gemini
-2.5 Pro, upgrade for higher limits, or stop. You’ll also be told when your usage
-limit resets and Gemini 3 Pro can be used again.
+当你达到 Gemini 3 Pro 的每日用量上限时,Gemini CLI 会提示你。此时你可以选择
+切换到 Gemini 2.5 Pro、升级以获得更高额度,或者停止使用。同时也会告诉你用量限制
+何时重置、何时可以继续使用 Gemini 3 Pro。
 
 <!-- prettier-ignore -->
 > [!TIP]
-> Looking to upgrade for higher limits? To compare subscription
-> options and find the right quota for your needs, see our
-> [Plans page](https://geminicli.com/plans/).
+> 想升级获得更高额度?请访问[套餐页面](https://geminicli.com/plans/)
+> 对比各订阅方案,选择适合你的配额。
 
-Similarly, when you reach your daily usage limit for Gemini 2.5 Pro, you’ll see
-a message prompting fallback to Gemini 2.5 Flash.
+同样,当你达到 Gemini 2.5 Pro 的每日用量上限时,会看到提示你回退到
+Gemini 2.5 Flash 的消息。
 
-### Capacity errors
+### 容量错误
 
-There may be times when the Gemini 3 Pro model is overloaded. When that happens,
-Gemini CLI will ask you to decide whether you want to keep trying Gemini 3 Pro
-or fallback to Gemini 2.5 Pro.
+Gemini 3 Pro 模型偶尔会过载。发生这种情况时,Gemini CLI 会让你选择是继续尝试
+Gemini 3 Pro,还是回退到 Gemini 2.5 Pro。
 
 <!-- prettier-ignore -->
 > [!NOTE]
-> The **Keep trying** option uses exponential backoff, in which Gemini
-> CLI waits longer between each retry, when the system is busy. If the retry
-> doesn't happen immediately, wait a few minutes for the request to
-> process.
+> **Keep trying**(继续尝试)选项在系统繁忙时采用指数退避策略,
+> 即 Gemini CLI 每次重试之间的等待时间会逐渐变长。如果重试没有立即发生,
+> 请等待几分钟让请求处理完成。
 
-### Model selection and routing types
+### 模型选择与路由类型
 
-When using Gemini CLI, you may want to control how your requests are routed
-between models. By default, Gemini CLI uses **Auto** routing.
+使用 Gemini CLI 时,你可能希望控制请求在不同模型之间的路由方式。默认情况下,
+Gemini CLI 使用 **Auto**(自动)路由。
 
-When using Gemini 3 Pro, you may want to use Auto routing or Pro routing to
-manage your usage limits:
+使用 Gemini 3 Pro 时,你可以选择 Auto 路由或 Pro 路由来管理用量额度:
 
-- **Auto routing:** Auto routing first determines whether a prompt involves a
-  complex or simple operation. For simple prompts, it will automatically use
-  Gemini 2.5 Flash. For complex prompts, if Gemini 3 Pro is enabled, it will use
-  Gemini 3 Pro; otherwise, it will use Gemini 2.5 Pro.
-- **Pro routing:** If you want to ensure your task is processed by the most
-  capable model, use `/model` and select **Pro**. Gemini CLI will prioritize the
-  most capable model available, including Gemini 3 Pro if it has been enabled.
+- **Auto 路由:** Auto 路由会先判断提示词对应的是复杂操作还是简单操作。简单提示词
+  会自动使用 Gemini 2.5 Flash;复杂提示词在 Gemini 3 Pro 可用时会使用
+  Gemini 3 Pro,否则使用 Gemini 2.5 Pro。
+- **Pro 路由:** 如果你想确保任务由能力最强的模型处理,使用 `/model` 并选择
+  **Pro**。Gemini CLI 会优先使用能力最强的可用模型,包括已启用的 Gemini 3 Pro。
 
-To learn more about selecting a model and routing, refer to
-[Gemini CLI Model Selection](../cli/model.md).
+想进一步了解模型选择与路由,请参考 [Gemini CLI 模型选择](../cli/model.md)。
 
-## How to enable Gemini 3 with Gemini CLI on Gemini Code Assist
+## 如何在 Gemini Code Assist 上为 Gemini CLI 启用 Gemini 3
 
-If you're using Gemini Code Assist Standard or Gemini Code Assist Enterprise,
-enabling Gemini 3 Pro on Gemini CLI requires configuring your release channels.
-Using Gemini 3 Pro will require two steps: administrative enablement and user
-enablement.
+如果你使用的是 Gemini Code Assist Standard 或 Gemini Code Assist Enterprise,
+在 Gemini CLI 上启用 Gemini 3 Pro 需要配置发布渠道。使用 Gemini 3 Pro 需要两步:
+管理员启用和用户启用。
 
-To learn more about these settings, refer to
-[Configure Gemini Code Assist release channels](https://developers.google.com/gemini-code-assist/docs/configure-release-channels).
+关于这些设置的更多信息,请参考
+[配置 Gemini Code Assist 发布渠道](https://developers.google.com/gemini-code-assist/docs/configure-release-channels)。
 
-### Administrator instructions
+### 管理员操作
 
-An administrator with **Google Cloud Settings Admin** permissions must follow
-these directions:
+拥有 **Google Cloud Settings Admin** 权限的管理员需按以下步骤操作:
 
-- Navigate to the Google Cloud Project you're using with Gemini CLI for Code
-  Assist.
-- Go to **Admin for Gemini** > **Settings**.
-- Under **Release channels for Gemini Code Assist in local IDEs** select
-  **Preview**.
-- Click **Save changes**.
+- 进入你在 Code Assist 中配合 Gemini CLI 使用的 Google Cloud 项目。
+- 前往 **Admin for Gemini** > **Settings**。
+- 在 **Release channels for Gemini Code Assist in local IDEs** 下选择
+  **Preview**。
+- 点击 **Save changes**。
 
-### User instructions
+### 用户操作
 
-Wait for two to three minutes after your administrator has enabled **Preview**,
-then:
+管理员启用 **Preview** 后等待两到三分钟,然后:
 
-- Open Gemini CLI.
-- Use the `/settings` command.
-- Set **Preview Features** to `true`.
+- 打开 Gemini CLI。
+- 使用 `/settings` 命令。
+- 将 **Preview Features** 设置为 `true`。
 
-Restart Gemini CLI and you should have access to Gemini 3.
+重启 Gemini CLI 后即可使用 Gemini 3。
 
-## Next steps
+## 下一步
 
-If you need help, we recommend searching for an existing
-[GitHub issue](https://github.com/google-gemini/gemini-cli/issues). If you
-cannot find a GitHub issue that matches your concern, you can
-[create a new issue](https://github.com/google-gemini/gemini-cli/issues/new/choose).
-For comments and feedback, consider opening a
-[GitHub discussion](https://github.com/google-gemini/gemini-cli/discussions).
+如果需要帮助,我们建议先搜索已有的
+[GitHub issue](https://github.com/google-gemini/gemini-cli/issues)。如果找不到
+与你问题相符的 issue,可以[新建一个 issue](https://github.com/google-gemini/gemini-cli/issues/new/choose)。
+如需评论与反馈,可以在
+[GitHub discussion](https://github.com/google-gemini/gemini-cli/discussions) 中发起讨论。

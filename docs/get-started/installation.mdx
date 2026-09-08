@@ -1,36 +1,36 @@
+> 🌐 本文档由 [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) 翻译,英文原版见原项目。
+
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-# Gemini CLI installation, execution, and releases
+# Gemini CLI 安装、运行与发布版本
 
-This document provides an overview of Gemini CLI's system requirements,
-installation methods, and release types.
+本文档介绍 Gemini CLI 的系统要求、安装方式以及发布版本类型。
 
-## Recommended system specifications
+## 推荐系统配置
 
-- **Operating System:**
+- **操作系统:**
   - macOS 15+
   - Windows 11 24H2+
   - Ubuntu 20.04+
-- **Hardware:**
-  - "Casual" usage: 4GB+ RAM (short sessions, common tasks and edits)
-  - "Power" usage: 16GB+ RAM (long sessions, large codebases, deep context)
-- **Runtime:** Node.js 20.0.0+
-- **Shell:** Bash, Zsh, or PowerShell
-- **Location:**
-  [Gemini Code Assist supported locations](https://developers.google.com/gemini-code-assist/resources/available-locations#americas)
-- **Internet connection required**
+- **硬件:**
+  - "轻度"使用:4GB 以上内存(短会话、常见任务与编辑)
+  - "重度"使用:16GB 以上内存(长会话、大型代码库、深度上下文)
+- **运行时:** Node.js 20.0.0+
+- **Shell:** Bash、Zsh 或 PowerShell
+- **地区限制:**
+  [Gemini Code Assist 支持的地区](https://developers.google.com/gemini-code-assist/resources/available-locations#americas)
+- **需要联网**
 
-## Install Gemini CLI
+## 安装 Gemini CLI
 
-We recommend most users install Gemini CLI using one of the following
-installation methods. Note that Gemini CLI comes pre-installed on
-[**Cloud Shell**](https://docs.cloud.google.com/shell/docs) and
-[**Cloud Workstations**](https://cloud.google.com/workstations).
+我们建议大多数用户使用以下安装方式之一来安装 Gemini CLI。注意,Gemini CLI 已预装在
+[**Cloud Shell**](https://docs.cloud.google.com/shell/docs) 和
+[**Cloud Workstations**](https://cloud.google.com/workstations) 上。
 
 <Tabs>
   <TabItem label="npm">
 
-  Install globally with npm:
+  使用 npm 全局安装:
 
   ```bash
   npm install -g @google/gemini-cli
@@ -39,7 +39,7 @@ installation methods. Note that Gemini CLI comes pre-installed on
   </TabItem>
   <TabItem label="Homebrew (macOS/Linux)">
 
-  Install globally with Homebrew:
+  使用 Homebrew 全局安装:
 
   ```bash
   brew install gemini-cli
@@ -48,7 +48,7 @@ installation methods. Note that Gemini CLI comes pre-installed on
   </TabItem>
   <TabItem label="MacPorts (macOS)">
 
-  Install globally with MacPorts:
+  使用 MacPorts 全局安装:
 
   ```bash
   sudo port install gemini-cli
@@ -57,7 +57,7 @@ installation methods. Note that Gemini CLI comes pre-installed on
   </TabItem>
   <TabItem label="Anaconda">
 
-  Install with Anaconda (for restricted environments):
+  使用 Anaconda 安装(适用于受限环境):
 
   ```bash
   # Create and activate a new environment
@@ -71,78 +71,70 @@ installation methods. Note that Gemini CLI comes pre-installed on
   </TabItem>
 </Tabs>
 
-## Run Gemini CLI
+## 运行 Gemini CLI
 
-For most users, we recommend running Gemini CLI with the `gemini` command:
+对大多数用户,我们推荐使用 `gemini` 命令运行 Gemini CLI:
 
 ```bash
 gemini
 ```
 
-For a list of options and additional commands, see the
-[CLI cheatsheet](../cli/cli-reference.md).
+如需查看可用选项和其他命令,请参考 [CLI 速查表](../cli/cli-reference.md)。
 
-You can also run Gemini CLI using one of the following advanced methods:
+你也可以通过以下高级方式运行 Gemini CLI:
 
 <Tabs>
   <TabItem label="npx">
 
-  Run instantly with npx. You can run Gemini CLI without permanent installation.
+  用 npx 即时运行。无需永久安装即可使用 Gemini CLI。
 
   ```bash
   # Using npx (no installation required)
   npx @google/gemini-cli
   ```
 
-  You can also execute the CLI directly from the main branch on GitHub, which is
-  helpful for testing features still in development:
+  你也可以直接运行 GitHub main 分支上的 CLI,方便测试仍在开发中的功能:
 
   ```bash
   npx https://github.com/google-gemini/gemini-cli
   ```
 
   </TabItem>
-  <TabItem label="Docker/Podman Sandbox">
+  <TabItem label="Docker/Podman 沙箱">
 
-  For security and isolation, Gemini CLI can be run inside a container. This is
-  the default way that the CLI executes tools that might have side effects.
+  出于安全与隔离考虑,Gemini CLI 可以在容器内运行。这也是 CLI 默认执行可能产生副作用
+  的工具时所采用的方式。
 
-  - **Directly from the registry:** You can run the published sandbox image
-    directly. This is useful for environments where you only have Docker and want
-    to run the CLI.
+  - **直接从镜像仓库运行:** 可以直接运行已发布的沙箱镜像。适用于只装了 Docker、
+    又想跑 CLI 的环境。
     ```bash
     # Run the published sandbox image for a specified CLI version
     docker run --rm -it us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.42.0-nightly.20260428.g59b2dea0e
     ```
-  - **Using the `--sandbox` flag:** If you have Gemini CLI installed locally
-    (using the standard installation described above), you can instruct it to run
-    inside the sandbox container.
+  - **使用 `--sandbox` 标志:** 如果已在本地安装 Gemini CLI(采用上述标准安装方式),
+    可以让它在沙箱容器中运行。
     ```bash
     gemini --sandbox -y -p "your prompt here"
     ```
 
   </TabItem>
-  <TabItem label="From source">
+  <TabItem label="从源码运行">
 
-  Contributors to the project will want to run the CLI directly from the source
-  code.
+  项目贡献者通常需要直接从源码运行 CLI。
 
-  - **Development mode:** This method provides hot-reloading and is useful for
-    active development.
+  - **开发模式:** 支持热重载,适合日常开发。
     ```bash
     # From the root of the repository
     npm run start
     ```
-  - **Production mode (React optimizations):** This method runs the CLI with React
-    production mode enabled, which is useful for testing performance without
-    development overhead.
+  - **生产模式(React 优化):** 以 React 生产模式运行 CLI,适合在没有开发开销的情况下
+    测试性能。
     ```bash
     # From the root of the repository
     npm run start:prod
     ```
-  - **Production-like mode (linked package):** This method simulates a global
-    installation by linking your local package. It's useful for testing a local
-    build in a production workflow.
+  - **类生产模式(link 本地包):** 通过 link 本地包来模拟全局安装,适合在
+    生产流程中测试本地构建产物。
 
     ```bash
     # Link the local cli package to your global node_modules
@@ -155,18 +147,16 @@ You can also run Gemini CLI using one of the following advanced methods:
   </TabItem>
 </Tabs>
 
-## Releases
+## 发布版本
 
-Gemini CLI has three release channels: stable, preview, and nightly. For most
-users, we recommend the stable release, which is the default installation.
+Gemini CLI 有三个发布渠道:stable(稳定版)、preview(预览版)和 nightly(每夜版)。
+对大多数用户,我们推荐默认安装的稳定版。
 
 <Tabs>
-  <TabItem label="Stable">
+  <TabItem label="Stable(稳定版)">
 
-  Stable releases are published each week. A stable release is created from the
-  previous week's preview release along with any bug fixes. The stable release
-  uses the `latest` tag. Omitting the tag also installs the latest stable
-  release by default.
+  稳定版每周发布一次,由上一周的预览版加上修复的 bug 构成。稳定版使用 `latest` 标签;
+  省略标签时默认也会安装最新的稳定版。
 
   ```bash
   # Both commands install the latest stable release.
@@ -175,23 +165,20 @@ users, we recommend the stable release, which is the default installation.
   ```
 
   </TabItem>
-  <TabItem label="Preview">
+  <TabItem label="Preview(预览版)">
 
-  New preview releases will be published each week. These releases are not fully
-  vetted and may contain regressions or other outstanding issues. Try out the
-  preview release by using the `preview` tag:
+  预览版每周发布一次。这些版本未经完整验证,可能存在回归或其他未解决的问题。
+  使用 `preview` 标签体验预览版:
 
   ```bash
   npm install -g @google/gemini-cli@preview
   ```
 
   </TabItem>
-  <TabItem label="Nightly">
+  <TabItem label="Nightly(每夜版)">
 
-  Nightly releases are published every day. The nightly release includes all
-  changes from the main branch at time of release. It should be assumed there are
-  pending validations and issues. You can help test the latest changes by
-  installing with the `nightly` tag:
+  每夜版每天发布,包含发布时 main 分支上的全部改动。应默认认为其中存在
+  尚未完成的验证和已知问题。使用 `nightly` 标签安装,即可帮助测试最新改动:
 
   ```bash
   npm install -g @google/gemini-cli@nightly

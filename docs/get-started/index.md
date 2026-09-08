@@ -1,80 +1,73 @@
-# Get started with Gemini CLI
+> 🌐 本文档由 [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) 翻译,英文原版见原项目。
 
-Welcome to Gemini CLI! This guide will help you install, configure, and start
-using Gemini CLI to enhance your workflow right from your terminal.
+# Gemini CLI 入门
 
-## Quickstart: Install, authenticate, configure, and use Gemini CLI
+欢迎来到 Gemini CLI!本指南将帮助你在终端中安装、配置并开始使用 Gemini CLI,
+直接提升你的工作效率。
 
-Gemini CLI brings the power of advanced language models directly to your command
-line interface. As an AI-powered assistant, Gemini CLI can help you with a
-variety of tasks, from understanding and generating code to reviewing and
-editing documents.
+## 快速上手:安装、认证、配置并使用 Gemini CLI
 
-## Install
+Gemini CLI 把先进语言模型的能力直接带到你的命令行界面。作为 AI 驱动的助手,
+Gemini CLI 可以帮你完成各种任务,从理解和生成代码,到审阅和编辑文档。
 
-The standard method to install and run Gemini CLI uses `npm`:
+## 安装
+
+安装并运行 Gemini CLI 的标准方式是使用 `npm`:
 
 ```bash
 npm install -g @google/gemini-cli
 ```
 
-Once Gemini CLI is installed, run Gemini CLI from your command line:
+安装完成后,在命令行中运行 Gemini CLI:
 
 ```bash
 gemini
 ```
 
-For more installation options, see
-[Gemini CLI Installation](./installation.mdx).
+更多安装选项请参考 [Gemini CLI 安装](./installation.mdx)。
 
-## Authenticate
+## 认证
 
-To begin using Gemini CLI, you must authenticate with a Google service. In most
-cases, you can log in with your existing Google account:
+要开始使用 Gemini CLI,必须先通过某个 Google 服务完成认证。大多数情况下,
+直接用你现有的 Google 账号登录即可:
 
-1. Run Gemini CLI after installation:
+1. 安装后运行 Gemini CLI:
 
    ```bash
    gemini
    ```
 
-2. When asked "How would you like to authenticate for this project?" select **1.
-   Sign in with Google**.
+2. 当被问到 "How would you like to authenticate for this project?" 时,
+   选择 **1. Sign in with Google**。
 
-3. Select your Google account.
+3. 选择你的 Google 账号。
 
-4. Click on **Sign in**.
+4. 点击 **Sign in**。
 
-Certain account types may require you to configure a Google Cloud project. For
-more information, including other authentication methods, see
-[Gemini CLI Authentication Setup](./authentication.mdx).
+某些账号类型可能需要你配置一个 Google Cloud 项目。包括其他认证方式在内的更多信息,
+请参考 [Gemini CLI 认证设置](./authentication.mdx)。
 
-## Configure
+## 配置
 
-Gemini CLI offers several ways to configure its behavior, including environment
-variables, command-line arguments, and settings files.
+Gemini CLI 提供多种配置方式,包括环境变量、命令行参数和设置文件。
 
-To explore your configuration options, see
-[Gemini CLI Configuration](../reference/configuration.md).
+想了解全部配置选项,请参考 [Gemini CLI 配置](../reference/configuration.md)。
 
-## Use
+## 使用
 
-Once installed and authenticated, you can start using Gemini CLI by issuing
-commands and prompts in your terminal. Ask it to generate code, explain files,
-and more.
+安装并认证完成后,你就可以在终端中输入命令和提示词来使用 Gemini CLI 了。
+可以让它生成代码、解释文件,等等。
 
 <!-- prettier-ignore -->
 > [!NOTE]
-> These examples demonstrate potential capabilities. Your actual
-> results can vary based on the model used and your project environment.
+> 以下示例展示的是潜在能力。实际结果会因所用模型和你的项目环境而有所不同。
 
-### Rename your photographs based on content
+### 根据照片内容重命名照片
 
-You can use Gemini CLI to automate file management tasks that require visual
-analysis. In this example, Gemini CLI renames images based on their actual
-subject matter.
+你可以用 Gemini CLI 自动完成需要视觉分析的文件管理任务。本例中,Gemini CLI
+会根据图片的实际内容重命名图像。
 
-Scenario: You have a folder containing the following files:
+场景:你有一个包含如下文件的文件夹:
 
 ```bash
 photos/photo1.png
@@ -82,15 +75,15 @@ photos/photo2.png
 photos/photo3.png
 ```
 
-Give Gemini the following prompt:
+给 Gemini 以下提示词:
 
 ```cli
 Rename the photos in my "photos" directory based on their contents.
 ```
 
-Result: Gemini asks for permission to rename your files.
+结果:Gemini 会请求重命名文件的权限。
 
-Select **Allow once** and your files are renamed:
+选择 **Allow once** 后,你的文件会被重命名为:
 
 ```bash
 photos/yellow_flowers.png
@@ -98,28 +91,26 @@ photos/antique_dresser.png
 photos/green_android_robot.png
 ```
 
-### Explain a repository by reading its code
+### 通过阅读代码解释一个仓库
 
-Gemini CLI is effective for rapid codebase exploration. The following example
-shows how to ask Gemini CLI to fetch, analyze, and summarize a remote project.
+Gemini CLI 非常适合快速探索代码库。下面的例子展示如何让 Gemini CLI 抓取、
+分析并总结一个远程项目。
 
-Scenario: You want to understand how a popular open-source utility works by
-inspecting its code, not just its README.
+场景:你想通过阅读代码(而不只是 README)搞清楚一个流行的开源工具是如何工作的。
 
-Give Gemini CLI the following prompt:
+给 Gemini CLI 以下提示词:
 
 ```cli
 Clone the 'chalk' repository from https://github.com/chalk/chalk, read its key source files, and explain how it works.
 ```
 
-Result: Gemini performs a sequence of actions to answer your request.
+结果:Gemini 会执行一系列操作来回答你的请求。
 
-1.  First, it asks for permission to run `git clone` to download the repository.
-2.  Next, it finds the important source files and asks for permission to read
-    them.
-3.  Finally, after analyzing the code, it provides a summary.
+1.  首先,它请求运行 `git clone` 下载仓库的权限。
+2.  接着,它找到关键的源码文件并请求读取权限。
+3.  最后,在分析完代码后给出总结。
 
-Gemini CLI returns an explanation based on the actual source code:
+Gemini CLI 会基于真实源码返回解释:
 
 ```markdown
 The `chalk` library is a popular npm package for styling terminal output with
@@ -140,22 +131,22 @@ colors. After analyzing the source code, here's how it works:
   terminal can render.
 ```
 
-### Combine two spreadsheets into one spreadsheet
+### 把两个电子表格合并成一个
 
-Gemini CLI can process and transform data across multiple files. Use this
-capability to merge reports or reformat data sets without manual copying.
+Gemini CLI 可以跨多个文件处理和转换数据。利用这个能力,无需手动复制即可合并报表
+或重排数据集。
 
-Scenario: You have two .csv files: `Revenue - 2023.csv` and
-`Revenue - 2024.csv`. Each file contains monthly revenue figures.
+场景:你有两个 .csv 文件:`Revenue - 2023.csv` 和 `Revenue - 2024.csv`,
+每个文件包含按月统计的收入数据。
 
-Give Gemini CLI the following prompt:
+给 Gemini CLI 以下提示词:
 
 ```cli
 Combine the two .csv files into a single .csv file, with each year a different column.
 ```
 
-Result: Gemini CLI reads each file and then asks for permission to write a new
-file. Provide your permission and Gemini CLI provides the combined data:
+结果:Gemini CLI 会先读取每个文件,然后请求写入新文件的权限。授权后,
+Gemini CLI 会给出合并后的数据:
 
 ```csv
 Month,2023,2024
@@ -173,37 +164,30 @@ November,3400,1800
 December,2100,9000
 ```
 
-### Run unit tests
+### 运行单元测试
 
-Gemini CLI can generate boilerplate code and tests based on your existing
-implementation. This example demonstrates how to request code coverage for a
-JavaScript component.
+Gemini CLI 可以基于你现有的实现生成样板代码和测试。这个例子演示如何为一个
+JavaScript 组件申请代码覆盖测试。
 
-Scenario: You've written a simple login page. You wish to write unit tests to
-ensure that your login page has code coverage.
+场景:你写了一个简单的登录页面,希望编写单元测试来保证它有代码覆盖。
 
-Give Gemini CLI the following prompt:
+给 Gemini CLI 以下提示词:
 
 ```cli
 Write unit tests for Login.js.
 ```
 
-Result: Gemini CLI asks for permission to write a new file and creates a test
-for your login page.
+结果:Gemini CLI 会请求写入新文件的权限,并为你的登录页面创建测试。
 
-## Check usage and quota
+## 查看用量与配额
 
-You can check your current token usage and quota information using the
-`/stats model` command. This command provides a snapshot of your current
-session's token usage, as well as your overall quota and usage for the supported
-models.
+你可以使用 `/stats model` 命令查看当前的 token 用量和配额信息。该命令会给出
+当前会话 token 用量的快照,以及所支持模型的整体配额和使用情况。
 
-For more information on the `/stats` command and its subcommands, see the
-[Command Reference](../reference/commands.md#stats).
+关于 `/stats` 命令及其子命令的更多信息,请参考
+[命令参考](../reference/commands.md#stats)。
 
-## Next steps
+## 下一步
 
-- Follow the [File management](../cli/tutorials/file-management.md) guide to
-  start working with your codebase.
-- See [Shell commands](../cli/tutorials/shell-commands.md) to learn about
-  terminal integration.
+- 跟随[文件管理](../cli/tutorials/file-management.md)指南开始处理你的代码库。
+- 阅读 [Shell 命令](../cli/tutorials/shell-commands.md)了解终端集成。
